@@ -17,13 +17,11 @@ export class ImplRdsApiAccessor implements RdsApiAccessor {
   async describeLogFileListByType(
     rdsIdentifier: InstanceIdentifier,
     typeName: LOG_FILE_TYPE,
-    minLastWritten: number | undefined,
   ): Promise<LogFile[]> {
     const loggingMethodName = 'describeLogFileListByType'
     try {
       const params: RDS.DescribeDBLogFilesMessage = {
         DBInstanceIdentifier: rdsIdentifier.name(),
-        FileLastWritten: minLastWritten,
         FilenameContains: typeName,
       }
       this.logger.log({
