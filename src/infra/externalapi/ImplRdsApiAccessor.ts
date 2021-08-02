@@ -1,6 +1,7 @@
 import { InstanceIdentifier } from '@/domain/rds/InstanceIdentifier'
 import { LogFile } from '@/domain/rds/LogFile'
 import { LogFileName } from '@/domain/rds/LogFileName'
+import { LOG_FILE_TYPE } from '@/domain/rds/LogFileType'
 import { LogLastWrittenTime } from '@/domain/rds/LogLastWrittenTime'
 import { RdsApiAccessor } from '@/domain/rds/RdsApiAccessor'
 import { createLambdaLogger } from '@/shared/logger'
@@ -15,7 +16,7 @@ export class ImplRdsApiAccessor implements RdsApiAccessor {
 
   async describeLogFileListByType(
     rdsIdentifier: InstanceIdentifier,
-    typeName: string,
+    typeName: LOG_FILE_TYPE,
     minLastWritten: number | undefined,
   ): Promise<LogFile[]> {
     const loggingMethodName = 'describeLogFileListByType'
@@ -66,7 +67,7 @@ export class ImplRdsApiAccessor implements RdsApiAccessor {
   }
 
   private convertToDomainModel(
-    type: string,
+    type: LOG_FILE_TYPE,
     logFileMetaDataList: RDS.DescribeDBLogFilesList,
   ): LogFile[] {
     if (logFileMetaDataList.length < 1) return []

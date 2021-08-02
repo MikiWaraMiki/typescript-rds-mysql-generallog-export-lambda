@@ -3,7 +3,7 @@ import { LOG_FILE_TYPE } from '@/domain/rds/LogFileType'
 import { LogLastWrittenTime } from '@/domain/rds/LogLastWrittenTime'
 
 export class LogFile {
-  private type: string
+  private type: LOG_FILE_TYPE
   private name: LogFileName
   private lastWrittenTime: LogLastWrittenTime
   private size: number
