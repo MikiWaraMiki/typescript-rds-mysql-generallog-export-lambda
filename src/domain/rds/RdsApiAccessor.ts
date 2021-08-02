@@ -8,6 +8,5 @@ export interface RdsApiAccessor {
   describeLogFileListByType(
     rdsIdentifier: InstanceIdentifier,
     typeName: string,
-    minLastWritten: number | undefined,
   ): Promise<LogFile[]>
 }
